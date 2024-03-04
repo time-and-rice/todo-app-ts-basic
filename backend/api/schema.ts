@@ -9,7 +9,7 @@ export const schema = makeSchema({
     schema: join(__dirname, "..", "schema.graphql"),
   },
   contextType: {
-    module: join(__dirname, "./context.ts"),
+    module: require.resolve("./context"),
     export: "Context",
   },
 });
