@@ -25,17 +25,19 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
+  DateTime: any
 }
 
 export interface NexusGenObjects {
   Mutation: {};
-  Post: { // root type
-    body?: string | null; // String
-    id?: number | null; // Int
-    published?: boolean | null; // Boolean
-    title?: string | null; // String
-  }
   Query: {};
+  Task: { // root type
+    completed: boolean; // Boolean!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -50,46 +52,56 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
-    createDraft: NexusGenRootTypes['Post']; // Post!
-    publish: NexusGenRootTypes['Post'] | null; // Post
-  }
-  Post: { // field return type
-    body: string | null; // String
-    id: number | null; // Int
-    published: boolean | null; // Boolean
-    title: string | null; // String
+    createTask: NexusGenRootTypes['Task']; // Task!
+    deleteTask: NexusGenRootTypes['Task']; // Task!
+    toggleTaskCompleted: NexusGenRootTypes['Task']; // Task!
+    updateTask: NexusGenRootTypes['Task']; // Task!
   }
   Query: { // field return type
-    drafts: Array<NexusGenRootTypes['Post'] | null>; // [Post]!
-    posts: Array<NexusGenRootTypes['Post'] | null>; // [Post]!
+    tasks: Array<NexusGenRootTypes['Task'] | null>; // [Task]!
+  }
+  Task: { // field return type
+    completed: boolean; // Boolean!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
-    createDraft: 'Post'
-    publish: 'Post'
-  }
-  Post: { // field return type name
-    body: 'String'
-    id: 'Int'
-    published: 'Boolean'
-    title: 'String'
+    createTask: 'Task'
+    deleteTask: 'Task'
+    toggleTaskCompleted: 'Task'
+    updateTask: 'Task'
   }
   Query: { // field return type name
-    drafts: 'Post'
-    posts: 'Post'
+    tasks: 'Task'
+  }
+  Task: { // field return type name
+    completed: 'Boolean'
+    createdAt: 'DateTime'
+    id: 'Int'
+    title: 'String'
+    updatedAt: 'DateTime'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createDraft: { // args
-      body: string; // String!
+    createTask: { // args
       title: string; // String!
     }
-    publish: { // args
-      draftId: number; // Int!
+    deleteTask: { // args
+      taskId: number; // Int!
+    }
+    toggleTaskCompleted: { // args
+      taskId: number; // Int!
+    }
+    updateTask: { // args
+      taskId: number; // Int!
+      title: string; // String!
     }
   }
 }

@@ -2,19 +2,26 @@
 ### Do not make changes to this file directly
 
 
-type Mutation {
-  createDraft(body: String!, title: String!): Post!
-  publish(draftId: Int!): Post
-}
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
 
-type Post {
-  body: String
-  id: Int
-  published: Boolean
-  title: String
+type Mutation {
+  createTask(title: String!): Task!
+  deleteTask(taskId: Int!): Task!
+  toggleTaskCompleted(taskId: Int!): Task!
+  updateTask(taskId: Int!, title: String!): Task!
 }
 
 type Query {
-  drafts: [Post]!
-  posts: [Post]!
+  tasks: [Task]!
+}
+
+type Task {
+  completed: Boolean!
+  createdAt: DateTime!
+  id: Int!
+  title: String!
+  updatedAt: DateTime!
 }
