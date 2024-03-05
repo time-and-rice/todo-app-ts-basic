@@ -7,7 +7,7 @@
     "dev:server": "ts-node-dev --transpile-only --no-notify api/index.ts",
     "dev:docker": "docker-compose -p todo-app-ts-basic up",
     "build": "rm -rf dist && tsc",
-    "format": "prettier -l \"./api/**/*.{js,ts,json}\""
+    "format": "prettier -l \"./api/**/*.ts\""
   },
   "keywords": [],
   "author": "",
