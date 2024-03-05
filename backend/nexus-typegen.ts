@@ -58,7 +58,7 @@ export interface NexusGenFieldTypes {
     updateTask: NexusGenRootTypes['Task']; // Task!
   }
   Query: { // field return type
-    tasks: Array<NexusGenRootTypes['Task'] | null>; // [Task]!
+    tasks: NexusGenRootTypes['Task'][]; // [Task!]!
   }
   Task: { // field return type
     completed: boolean; // Boolean!

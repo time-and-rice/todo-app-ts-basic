@@ -15,7 +15,7 @@ export const TaskQuery = extendType({
   type: "Query",
 
   definition(t) {
-    t.nonNull.list.field("tasks", {
+    t.nonNull.list.nonNull.field("tasks", {
       type: Task,
       resolve(_root, _args, ctx) {
         return ctx.db.task.findMany({
